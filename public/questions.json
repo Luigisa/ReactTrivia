@@ -1,0 +1,53 @@
+{
+  "questions": [
+    {
+      "question": "¿Que es la micropigmentacion?",
+      "answers": [
+        "Pintar las uñas",
+        "Técnica de micro tatuaje",
+        "Tatuajes permanentes"
+      ],
+      "correctAnswer": "Técnica de micro tatuaje"
+    },
+    {
+      "question": "¿Que beben las vacas?",
+      "answers": ["Agua", "Leche", "Kas"],
+      "correctAnswer": "Agua"
+    },
+    {
+      "question": "¿Cual es la capital de Navarra?",
+      "answers": ["Pamplona", "Madrid", "Barcelona"],
+      "correctAnswer": "Pamplona"
+    },
+    {
+      "question": "¿De que color es el caballo blanco de Santiago?",
+      "answers": ["Amarillo", "Marron", "Blanco"],
+      "correctAnswer": "Blanco"
+    },
+    {
+      "question": "¿Cual es la capital de la Rioja?",
+      "answers": ["Zaragoza", "Madrid", "Logroño"],
+      "correctAnswer": "Logroño"
+    },
+    {
+      "question": "¿Cuantos tiempos tiene una solea?",
+      "answers": ["4", "6", "12"],
+      "correctAnswer": "12"
+    },
+    {
+      "question": "¿Como se llama el campo de Osasuna?",
+      "answers": ["Sanchez pijuan", "CampNou", "Sadar"],
+      "correctAnswer": "Sadar"
+    },
+    {
+      "question": "¿Cuál es el nombre de la mascota de Mickey Mouse?",
+      "answers": ["Goofy", "Donald", "Pluto"],
+      "correctAnswer": "Pluto"
+    },
+    {
+      "question": "¿Cuál es el río más largo del mundo?",
+      "answers": ["Nilo", "Amazona", "Arga"],
+      "correctAnswer": "Amazona"
+    }
+  ]
+}
