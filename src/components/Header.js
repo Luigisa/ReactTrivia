@@ -1,10 +1,14 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+
+const divStyle = {
+  textAlign: "center",
+  width: "100%"
+};
 
 const Header = () => (
-  <Typography variant="display2" gutterBottom color="primary" align="center">
-    React.JS Trivial
-  </Typography>
+  <div style={divStyle}>
+    <img src="/img/REACT.JS.png" alt="Logo" style={divStyle} />
+  </div>
 );
 
 export default Header;

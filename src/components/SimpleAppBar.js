@@ -7,24 +7,24 @@ import Grid from "@material-ui/core/Grid";
 function SimpleAppBar(props) {
   return (
     <div>
-      <Grid container spacing={24}>
+      <Grid container spacing={40}>
         <Grid item xs={12}>
           <AppBar position="static" color="default">
             <Toolbar>
               <Grid item xs={4}>
                 <Typography
-                  variant="title"
+                  variant="body2"
                   gutterBottom
                   color="primary"
                   align="center"
                 >
-                  Nombre: {props.playerName}
+                  Nick: {props.playerName}
                 </Typography>
               </Grid>
 
               <Grid item xs={4}>
                 <Typography
-                  variant="subheading"
+                  variant="body2"
                   gutterBottom
                   color="primary"
                   align="center"
@@ -34,7 +34,7 @@ function SimpleAppBar(props) {
               </Grid>
               <Grid item xs={4}>
                 <Typography
-                  variant="subheading"
+                  variant="body2"
                   gutterBottom
                   color="primary"
                   align="center"

@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+
 import GameRepository from "./../repository/Game.repository";
 import GameButtonView from "./GameButtonView";
+
 import Grid from "@material-ui/core/Grid";
 import Slide from "@material-ui/core/Slide";
+
 import EndGame from "./gameHelperEndGame";
 import ErrorAnswer from "./gameHelperErrorAnswer";
 import Question from "./gameHelperQuestion";
+import GamePresenter from "./Game-presenter";
 
 class Game extends Component {
   state = {
@@ -21,44 +26,50 @@ class Game extends Component {
     );
   }
 
-  clickToAnswer = (item, correctAnswer) => {
-    let num = this.state.questionsNum + 1;
-    if (num >= this.state.questions.length) {
-      this.setState({
-        endGame: true
-      });
-    }
-    if (item === correctAnswer) {
-      this.props.onCorrectAnswer();
-      this.newQuestion();
-    } else {
-      this.setState({ errorAnswer: true });
-    }
-    this.props.onRespondAnswer();
+  onGameEnd = () => {
+    this.setState({ endGame: true });
   };
 
-  newQuestion = () => {
+  onErrorAnwser = () => {
+    this.setState({ errorAnswer: true });
+  };
+
+  onNewQuestion = () => {
+    this.props.onCorrectAnswer();
     this.setState({
       questionsNum: this.state.questionsNum + 1,
       errorAnswer: false
     });
   };
 
-  shuffle = a => {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
+  onNewGame = () => {
+    this.props.history.push(`/`);
   };
 
   render() {
+    const hasQuestions = this.state.questions.length > 0;
+    this.presenter = new GamePresenter(this);
+
     if (this.state.endGame) {
-      return <EndGame />;
+      return (
+        <div>
+          <EndGame />
+          <GameButtonView onClick={this.onNewGame} text="Nuevo Juego" />
+        </div>
+      );
     }
 
-    if (this.state.questions.length > 0 && this.state.errorAnswer === false) {
-      let respuestas = this.shuffle(
+    if (this.state.errorAnswer === true) {
+      return (
+        <div>
+          <ErrorAnswer />
+          <GameButtonView onClick={this.onNewQuestion} text="Nueva pregunta" />
+        </div>
+      );
+    }
+
+    if (hasQuestions) {
+      let respuestas = shuffle(
         this.state.questions[this.state.questionsNum].answers
       );
 
@@ -75,7 +86,7 @@ class Game extends Component {
                 <Slide direction="up" in={true} mountOnEnter unmountOnExit>
                   <GameButtonView
                     onClick={() =>
-                      this.clickToAnswer(
+                      this.presenter.clickToAnswer(
                         item,
                         this.state.questions[this.state.questionsNum]
                           .correctAnswer
@@ -89,18 +100,18 @@ class Game extends Component {
           })}
         </Grid>
       );
-    } else {
-      if (this.state.errorAnswer === true) {
-        return (
-          <div>
-            <ErrorAnswer />
-            <GameButtonView onClick={this.newQuestion} text="Nueva pregunta" />
-          </div>
-        );
-      }
-      return null;
     }
+
+    return null;
   }
 }
 
-export default Game;
+const shuffle = a => {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
+
+export default withRouter(Game);
