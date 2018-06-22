@@ -1,7 +1,6 @@
 class GamePresenter {
   constructor(view) {
     this.view = view;
-    console.log("asdf");
   }
 
   clickToAnswer(itemClicked, correctAnswer) {
@@ -11,6 +10,8 @@ class GamePresenter {
 
   checkAnswer(itemClicked, correctAnswer) {
     if (itemClicked === correctAnswer) {
+      this.view.onCorrectAnswer();
+
       this.view.onNewQuestion();
     } else {
       this.view.onErrorAnwser();

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import GameRepository from "./../repository/Game.repository";
+import GameRepository from "../repository/opentdb.repository";
 import GameButtonView from "./GameButtonView";
 
 import Grid from "@material-ui/core/Grid";
@@ -13,6 +13,10 @@ import Question from "./gameHelperQuestion";
 import GamePresenter from "./Game-presenter";
 
 class Game extends Component {
+  constructor() {
+    super();
+    this.repository = new GameRepository();
+  }
   state = {
     questions: [],
     questionsNum: 0,
@@ -21,10 +25,14 @@ class Game extends Component {
   };
 
   componentDidMount() {
-    GameRepository().then(questions =>
-      this.setState({ questions: questions.questions })
-    );
+    this.repository
+      .getQuestions()
+      .then(questions => this.onLoadQuestions(questions));
   }
+
+  onLoadQuestions = questions => {
+    this.setState({ questions: this.repository.model(questions) });
+  };
 
   onGameEnd = () => {
     this.setState({ endGame: true });
@@ -34,8 +42,12 @@ class Game extends Component {
     this.setState({ errorAnswer: true });
   };
 
-  onNewQuestion = () => {
+  onCorrectAnswer = () => {
     this.props.onCorrectAnswer();
+  };
+
+  onNewQuestion = () => {
+    this.props.onRespondAnswer();
     this.setState({
       questionsNum: this.state.questionsNum + 1,
       errorAnswer: false
