@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import GameRepository from "../repository/opentdb.repository";
-import GameButtonView from "./GameButtonView";
+import GameRepository from "../repository/local.repository";
+import GameButtonView from "./atomos/GameButtonView";
 
 import Grid from "@material-ui/core/Grid";
 import Slide from "@material-ui/core/Slide";
 
-import EndGame from "./gameHelperEndGame";
-import ErrorAnswer from "./gameHelperErrorAnswer";
-import Question from "./gameHelperQuestion";
+import EndGame from "./game-helpers/gameHelperEndGame";
+import ErrorAnswer from "./game-helpers/gameHelperErrorAnswer";
+import Question from "./game-helpers/gameHelperQuestion";
 import GamePresenter from "./Game-presenter";
 
 class Game extends Component {

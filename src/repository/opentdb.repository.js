@@ -4,7 +4,7 @@ function convert(str) {
   str = str.replace(/&#039;/g, "'");
   return str;
 }
-class LocalRepository {
+class OpenDbRepository {
   getQuestions() {
     return fetch(
       "https://opentdb.com/api.php?amount=50&difficulty=easy&type=multiple"
@@ -31,4 +31,4 @@ class LocalRepository {
   }
 }
 
-export default LocalRepository;
+export default OpenDbRepository;
