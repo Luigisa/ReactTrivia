@@ -13,10 +13,7 @@ import Question from "./game-helpers/gameHelperQuestion";
 import GamePresenter from "./Game-presenter";
 
 class Game extends Component {
-  constructor() {
-    super();
-    this.repository = new GameRepository();
-  }
+  repository = new GameRepository();
   state = {
     questions: [],
     questionsNum: 0,
@@ -66,7 +63,7 @@ class Game extends Component {
       return (
         <div>
           <GameMsg msg="FIN DEL JUEGO" />
-          <GameButtonView onClick={this.onNewGame} text="Nuevo Juego" />
+          <GameButtonView onClick={this.onNewGame}>Nuevo Juego</GameButtonView>
         </div>
       );
     }
@@ -74,8 +71,10 @@ class Game extends Component {
     if (this.state.errorAnswer === true) {
       return (
         <div>
-          <GameMsg msg="Respuesta Incorrecta" />
-          <GameButtonView onClick={this.onNewQuestion} text="Nueva pregunta" />
+          <GameMsg msg="¡Respuesta Incorrecta!" />
+          <GameButtonView onClick={this.onNewQuestion} color="primary">
+            Nueva pregunta
+          </GameButtonView>
         </div>
       );
     }
@@ -97,6 +96,7 @@ class Game extends Component {
               <Grid item xs={12} md={4} key={item}>
                 <Slide direction="up" in={true} mountOnEnter unmountOnExit>
                   <GameButtonView
+                    color="primary"
                     onClick={() =>
                       this.presenter.clickToAnswer(
                         item,
@@ -104,8 +104,9 @@ class Game extends Component {
                           .correctAnswer
                       )
                     }
-                    text={item}
-                  />
+                  >
+                    {item}
+                  </GameButtonView>
                 </Slide>
               </Grid>
             );

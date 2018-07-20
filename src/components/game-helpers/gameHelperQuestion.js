@@ -5,12 +5,7 @@ import PropsTypes from "prop-types";
 
 const Question = props => (
   <Slide direction="left" in={true} timeout={200} mountOnEnter unmountOnExit>
-    <Typography
-      variant="display1"
-      gutterBottom
-      color="secondary"
-      align="center"
-    >
+    <Typography variant="display1" gutterBottom color="primary" align="center">
       {props.question}
     </Typography>
   </Slide>
