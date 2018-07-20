@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import PropsTypes from "prop-types";
 
 import GameRepository from "../repository/local.repository";
 import GameButtonView from "./atomos/GameButtonView";
@@ -7,8 +8,7 @@ import GameButtonView from "./atomos/GameButtonView";
 import Grid from "@material-ui/core/Grid";
 import Slide from "@material-ui/core/Slide";
 
-import EndGame from "./game-helpers/gameHelperEndGame";
-import ErrorAnswer from "./game-helpers/gameHelperErrorAnswer";
+import GameMsg from "./game-helpers/gameMsg";
 import Question from "./game-helpers/gameHelperQuestion";
 import GamePresenter from "./Game-presenter";
 
@@ -65,7 +65,7 @@ class Game extends Component {
     if (this.state.endGame) {
       return (
         <div>
-          <EndGame />
+          <GameMsg msg="FIN DEL JUEGO" />
           <GameButtonView onClick={this.onNewGame} text="Nuevo Juego" />
         </div>
       );
@@ -74,7 +74,7 @@ class Game extends Component {
     if (this.state.errorAnswer === true) {
       return (
         <div>
-          <ErrorAnswer />
+          <GameMsg msg="Respuesta Incorrecta" />
           <GameButtonView onClick={this.onNewQuestion} text="Nueva pregunta" />
         </div>
       );
@@ -117,6 +117,11 @@ class Game extends Component {
     return null;
   }
 }
+
+Game.PropsTypes = {
+  onCorrectAnswer: PropsTypes.func.isRequired,
+  onRespondAnswer: PropsTypes.func.isRequired
+};
 
 const shuffle = a => {
   for (let i = a.length - 1; i > 0; i--) {

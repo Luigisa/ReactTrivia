@@ -1,9 +1,15 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import PropsTypes from "prop-types";
 
-const EndGame = () => (
+const GameMsg = props => (
   <Typography gutterBottom color="secondary" align="center" variant="display1">
-    FIN DEL JUEGO
+    {props.msg}
   </Typography>
 );
-export default EndGame;
+
+GameMsg.PropsTypes = {
+  msg: PropsTypes.string.isRequired
+};
+
+export default GameMsg;

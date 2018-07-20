@@ -1,4 +1,5 @@
 import React from "react";
+import PropsTypes from "prop-types";
 import { withFormik } from "formik";
 import * as Yup from "yup"; // for everything
 import TextField from "@material-ui/core/TextField";
@@ -47,13 +48,16 @@ const MyInnerForm = props => {
   );
 };
 
+MyInnerForm.propTypes = {
+  onSubmit: PropsTypes.func.isRequired
+};
+
 const EnhancedForm = withFormik({
   mapPropsToValues: () => ({ nick: "" }),
   validationSchema: Yup.object().shape({
     nick: Yup.string().required("Nick is required!")
   }),
   handleSubmit: (values, { props }) => {
-    console.log(values.nick);
     props.onSubmit(values.nick);
   }
 })(MyInnerForm);
